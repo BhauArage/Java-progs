@@ -39,7 +39,7 @@ class SimpleLinkedList<T> {
     }
 
     SimpleLinkedList(T[] values) {
-        Arrays.stream(values).forEach(this::push);
+        for(T value : values) push(value);
     }
 
     void push(T value) {
@@ -80,11 +80,18 @@ class SimpleLinkedList<T> {
     }
 
     void reverse() {
-        Object[] arr = asArray((Class<T>) Object.class);
-        head = null;
-        Arrays.stream(arr)
-                .map(o -> (T)o)
-                .forEach(this::push);
+        Node prev = null;
+        Node current = head;
+        tail=current;
+        Node next;
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+
+        head = prev;
     }
 
     T[] asArray(Class<T> clazz) {
