@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
@@ -14,9 +15,9 @@ class SimpleLinkedList<T> {
             return data;
         }
 
-//        public void setData(T data) {
-//            this.data = data;
-//        }
+        public void setData(T data) {
+            this.data = data;
+        }
 
         public Node getNext() {
             if(next == null){
@@ -62,10 +63,10 @@ class SimpleLinkedList<T> {
         if (head.equals(tail)) {
             head = null;
             tail = null;
-            return poppedItem;
         }
+        else{
         tail = getPrev(tail);
-        tail.setNext(null);
+        tail.setNext(null);}
         return poppedItem;
     }
 
@@ -79,11 +80,21 @@ class SimpleLinkedList<T> {
     }
 
     void reverse() {
-        throw new UnsupportedOperationException("Please implement the SimpleLinkedList.reverse() method.");
+        Object[] arr = asArray((Class<T>) Object.class);
+        head = null;
+        Arrays.stream(arr)
+                .map(o -> (T)o)
+                .forEach(this::push);
     }
 
     T[] asArray(Class<T> clazz) {
-        throw new UnsupportedOperationException("Please implement the SimpleLinkedList.asArray() method.");
+        T[] arr = (T[]) Array.newInstance(clazz, size);
+        Node curr = head;
+        for (int i = size - 1; i >= 0; i--) {
+            arr[i] = curr.getData();
+            curr = curr.getNext();
+        }
+        return arr;
     }
 
     int size() {
