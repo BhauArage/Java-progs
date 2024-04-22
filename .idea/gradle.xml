@@ -20,6 +20,14 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/pythagorean-triplet" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/pythagorean-triplet" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/rna-transcription" />
         <option name="modules">
           <set>
